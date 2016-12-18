@@ -1,0 +1,156 @@
+<div>
+    <div class="container">
+        <form class="navbar-form navbar-right" role="search" method="POST" action="/article/search">
+            <div class="form-group">
+                <input type="text" class="form-control areaSearch" name="title" placeholder="Search">
+            </div>
+            <button type="submit" class="btn btn-default btn-xs buttonOfSearchBar">Submit</button>
+        </form>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right navbar-right-buttons-frontpage">
+                <li><a href="/">Home</a></li>
+                <li><a href="/home/staticPages/aboutMe/">About me</a></li>
+                {{#each categories}}
+                    <li class="dropdown right-buttons-frontpage">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                           role="button" aria-expanded="false">
+                            {{ this.name }}
+                            <span class="caret"></span></a>
+                        <ul class="dropdown-menu buttonsDropdown" role="menu">
+                            {{#each articlesFull}}
+                                <li><a href="/article/details/{{_id}}">{{title}}</a></li>
+                            {{/each}}
+                        </ul>
+                    </li>
+                {{/each}}
+                <li><a href="/home/staticPages/remunerations/">Remunerations</a></li>
+                <li><a href="/comment/all/">Legal blog</a></li>
+                <li><a href="/home/staticPages/contactMe/">Contact me</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="container body-content pageComments">
+    <h4><b>Legal blog</b></h4>
+    <br>
+    <div class="welcomeText">
+        I welcome you to my web site. If you are looking for a lawyer or simply would like to learn more about your
+        legal rights, below you can submit your comments or inquiries:
+    </div>
+    <br>
+    <br>
+    <div class="commentsParam">
+        {{#each comments}}
+            {{#if ../isAdmin}}
+                <form class="form-horizontal" method="POST" action="/comment/delete/{{id}}">
+                    <div class="buttonDeleteComment">
+                        <button type="submit" class="btn btn-danger btn-xs">Delete &raquo;</button>
+                        <div class="clear-floats"></div>
+                    </div>
+                </form>
+            {{/if}}
+            <div class="comment-post">
+                <div class="panel panel-primary bodyOfComment">
+                    <div class="panel-heading subjectOfComment">{{this.subject}}</div>
+                    <div class="panel-body contentOfComment">{{this.content}}</div>
+                    <div class="authorAndDatePost">
+                        <div class="panel-footer">
+                            <span class="label label-primary authorOfComment">by: {{this.author.fullName}}</span>
+                            <span class="label label-primary dateOfComment"> Posted on {{this.date}}</span>
+                            <div class="clear-floats"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{#if reply}}
+                {{#if ../isAdmin}}
+                    <form class="form-horizontal" method="POST" action="/comment/edit/{{id}}">
+                        <div class="buttonEditReply">
+                            <button type="submit" class="btn btn-success btn-xs" href="/comment/edit/{{id}}">
+                                Edit &raquo;</button>
+                            <div class="clear-floats"></div>
+                        </div>
+                        <div class="reply-post">
+                            <div class="panel panel-info">
+                                <div class="panel-body reply">
+                                    <textarea class="replyAreaEdit" id="reply" rows="3" name="reply"
+                                              required>{{reply}}</textarea>
+                                </div>
+                                <div class="float-reply-post">
+                                    <div class="panel-footer replyPost">
+                                        <span class="label label-default authorOfReply">by Admin</span>
+                                        <span class="label label-default dateOfReply"> Posted on {{this.dateReply}}</span>
+                                        <div class="clear-floats"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                {{else}}
+                    <div class="reply-post">
+                        <div class="panel panel-info">
+                            <div class="panel-body reply">{{reply}}</div>
+                            <div class="float-reply-post">
+                                <div class="panel-footer replyPost">
+                                    <span class="label label-default authorOfReply">by Admin</span>
+                                    <span class="label label-default dateOfReply"> Posted on {{this.dateReply}}</span>
+                                    <div class="clear-floats"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {{/if}}
+            {{else}}
+                {{#if ../isAdmin}}
+                    <div class="container body-content">
+                        <form class="form-horizontal" method="POST" action="/comment/edit/{{id}}">
+                            <div class="reply-form">
+                                <div>
+                                    <b>Reply:</b>
+                                </div>
+                                <br>
+                                <div class="reply-form-firstPart">
+                <textarea class="replyArea" id="reply" rows="5" name="reply"
+                          placeholder="Enter your reply here" required></textarea>
+                                </div>
+                                <div>
+                                    <input type="submit" href="/comment/edit/{{id}}" name="submit"
+                                           value="Post Reply">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                {{/if}}
+            {{/if}}
+        {{/each}}
+    </div>
+    <br>
+    <div class="container body-content">
+        {{#if user}}
+            <form class="form-horizontal" method="POST" action="/comment/all">
+                <div class="comment_form">
+                    <div>
+                        <b>Leave your comment here:</b>
+                    </div>
+                    <br>
+                    <div class="comment_form_firstPart">
+                        <input type="hidden" name="reply" value="">
+                        <input type="text" class="subjectArea" name="subject" id="subject" placeholder="Subject"
+                               required>
+                    </div>
+                    <br>
+                    <div class="comment_form_secondPart">
+                <textarea class="commentContentArea" id="commentContent" rows="5" name="content"
+                          placeholder="Enter your comment here" required></textarea>
+                    </div>
+                    <div>
+                        <input type="submit" name="submit" value="Post Comment">
+                    </div>
+                </div>
+            </form>
+        {{/if}}
+        <div class="pull-right">
+            <a class="btn btn-default btn-xs" href="/">Back &raquo;</a>
+        </div>
+    </div>
+</div>

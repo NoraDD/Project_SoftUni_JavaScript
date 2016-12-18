@@ -1,0 +1,21 @@
+<div class="container body-content">
+    {{#each articles}}
+    <div class="row">
+        <div class="col-md-12">
+            <article>
+                <header>
+                    <h2>{{this.title}}</h2>
+                </header>
+
+                <p>
+                    {{this.content}}
+                </p>
+
+                <small class="author">
+                    {{this.author.fullName}}
+                </small>
+            </article>
+        </div>
+    </div>
+    {{/each}}
+</div>

@@ -1,0 +1,103 @@
+<div>
+    <div class="container">
+        <form class="navbar-form navbar-right" role="search" method="POST" action="/article/search">
+            <div class="form-group">
+                <input type="text" class="form-control areaSearch" name="title" placeholder="Search">
+            </div>
+            <button type="submit" class="btn btn-default btn-xs buttonOfSearchBar">Submit</button>
+        </form>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right navbar-right-buttons-frontpage">
+                <li><a href="/">Home</a></li>
+                <li><a href="/home/staticPages/aboutMe/">About me</a></li>
+                {{#each categories}}
+                    <li class="dropdown right-buttons-frontpage">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                           role="button" aria-expanded="false">
+                            {{ this.name }}
+                            <span class="caret"></span></a>
+                        <ul class="dropdown-menu buttonsDropdown" role="menu">
+                            {{#each articlesFull}}
+                                <li><a href="/article/details/{{_id}}">{{title}}</a></li>
+                            {{/each}}
+                        </ul>
+                    </li>
+                {{/each}}
+                <li><a href="/home/staticPages/remunerations/">Remunerations</a></li>
+                <li><a href="/comment/all/">Legal blog</a></li>
+                <li><a href="/home/staticPages/contactMe/">Contact me</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="container body-content">
+    <div class="row">
+        <div class="col-md-6 cell-frontpage full-width">
+            <article>
+                <header>
+                    <h3><b>Remunerations</b></h3>
+                    <br>
+                </header>
+                <p align="justify">
+                    Provided herein list of prices for legal services is incomplete and aims to grant an approximate
+                    orientation to the client for the remunerations of the most wanted legal services.
+                </p>
+                <p align="justify">
+                    Upon request, I will be able to provide an additional and/or clarifying information on
+                    the remuneration of each legal service that you do not find in this price list.
+                </p>
+                <p align="justify">
+                    <b>Legal Counseling with a lawyer – price:</b>
+                </p>
+                <p align="justify">
+                    1.	Oral consultation out of the office - price 25 lv.
+                </p>
+                <p align="justify">
+                    2.	Consultation at the office, including rеview of documents - price from 60 lv. to 300 lv., depending on the material interest.
+                </p>
+                <p align="justify">
+                    <b>Drafting of contracts and other documents:</b>
+                </p>
+                <p align="justify">
+                    1.	Written contract, annexes and/or additional agreements to it - price from 50 lv. to 1,000 lv., depending on the material interest.
+                </p>
+                <p align="justify">
+                    2.	Power of attorney - price 20 lv.
+                </p>
+                <p align="justify">
+                    3.	Notary invitation - 50 lv.
+                </p>
+                <p align="justify">
+                    4.	An Application for a writ of execution and Enforcement proceedings - cost 100 lv.
+                </p>
+                <p align="justify">
+                    5.	Complaint, request for application, etc. - 50 lv.
+                </p>
+                <p align="justify">
+                    <b>Legal advice, assistance and/or representation during the process of concluding a deal with real estate property:</b>
+                </p>
+                <p align="justify">
+                    The price includes preparation of Deed for the real estate deal and overall legal assistance in relation to the deal.
+                </p>
+                <p align="justify">
+                    1.	For a real estate deal amounting up to 10,000 lv. – a price of 300 lv.
+                </p>
+                <p align="justify">
+                    2.	For a real estate deal amounting between 10,000 lv. and 50,000 lv. - a price of 500 lv.
+                </p>
+                <p align="justify">
+                    3.	For a real estate deal amounting between 50,000 lv. and 100,000 lv. - a price of 800 lv.
+                </p>
+                <p align="justify">
+                    4.	For a real estate deal amounting over 100,000 lv. – the price is negotiable.
+                </p>
+                <footer>
+                    <div class="pull-right">
+                        <a class="btn btn-default btn-xs" href="/">Back &raquo;</a>
+                    </div>
+                </footer>
+            </article>
+        </div>
+    </div>
+</div>
+

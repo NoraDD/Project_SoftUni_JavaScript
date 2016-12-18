@@ -1,0 +1,60 @@
+<div>
+    <div class="container">
+        <form class="navbar-form navbar-right" role="search" method="POST" action="/article/search">
+            <div class="form-group">
+                <input type="text" class="form-control areaSearch" name="title" placeholder="Search">
+            </div>
+            <button type="submit" class="btn btn-default btn-xs buttonOfSearchBar">Submit</button>
+        </form>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right navbar-right-buttons-frontpage">
+                <li><a href="/">Home</a></li>
+                <li><a href="/home/staticPages/aboutMe/">About me</a></li>
+                {{#each categories}}
+                    <li class="dropdown right-buttons-frontpage">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                           role="button" aria-expanded="false">
+                            {{ this.name }}
+                            <span class="caret"></span></a>
+                        <ul class="dropdown-menu buttonsDropdown" role="menu">
+                            {{#each articlesFull}}
+                                <li><a href="/article/details/{{_id}}">{{title}}</a></li>
+                            {{/each}}
+                        </ul>
+                    </li>
+                {{/each}}
+                <li><a href="/home/staticPages/remunerations/">Remunerations</a></li>
+                <li><a href="/comment/all/">Legal blog</a></li>
+                <li><a href="/home/staticPages/contactMe/">Contact me</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="container body-content">
+    <div class="row">
+        <div class="col-md-12">
+            <article>
+                <header>
+                    <h2>{{article.title}}</h2>
+                </header>
+
+                <p>
+                    {{article.content}}
+                </p>
+
+                <small class="author">
+                    {{article.author.fullName}}
+                </small>
+                <footer>
+                    <div class="pull-right">
+                        {{#if isUserAuthorized}}
+                            <a class="btn btn-success btn-xs" href="/article/edit/{{article.id}}">Edit &raquo;</a>
+                            <a class="btn btn-danger btn-xs" href="/article/delete/{{article.id}}">Delete &raquo;</a>
+                        {{/if}}
+                        <a class="btn btn-default btn-xs" href="/">Back &raquo;</a>
+                    </div>
+                </footer>
+            </article>
+        </div>
+    </div>
+</div>

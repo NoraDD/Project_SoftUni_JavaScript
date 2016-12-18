@@ -1,0 +1,167 @@
+<div class="navbar navbar-default navbar-fixed-top navbar-frontpage">
+    <div class="container">
+        <div class="navbar-header">
+            <a href="/" class="navbar-brand navbar-left-button-frontpage">
+                <link href="https://fonts.googleapis.com/css?family=Aref+Ruqaa" rel="stylesheet">
+                Nora Dimitrova
+                <br>Attorney-at-law
+            </a>
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        {{#if user}}
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right navbar-right-allButtons">
+                    {{#if isAdmin}}
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                               role="button" aria-expanded="false">Admin<span class="caret"></span></a>
+                            <ul class="dropdown-menu buttonsDropdown" role="menu">
+                                <li><a href="/admin/user/all">Users</a></li>
+                                <li><a href="/admin/category/all">Categories</a></li>
+                                <li><a href="/article/create">New Article</a></li>
+                            </ul>
+                        </li>
+                    {{/if}}
+                    <li><a href="/user/details">Welcome({{user.email}})</a></li>
+                    <li><a href="/user/logout">Logout</a></li>
+                </ul>
+            </div>
+        {{/if}}
+        {{#unless user}}
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right buttonsRegAndLogin">
+                    <li><a href="/user/register">Register</a></li>
+                    <li><a href="/user/login">Login</a></li>
+                </ul>
+            </div>
+        {{/unless}}
+    </div>
+</div>
+
+<div>
+    <div class="container">
+        <form class="navbar-form navbar-right" role="search" method="POST" action="/article/search">
+            <div class="form-group">
+                <input type="text" class="form-control areaSearch" name="title" placeholder="Search">
+            </div>
+            <button type="submit" class="btn btn-default btn-xs buttonOfSearchBar">Submit</button>
+        </form>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right navbar-right-buttons-frontpage">
+                <li><a href="/">Home</a></li>
+                <li><a href="/home/staticPages/aboutMe/">About me</a></li>
+                {{#each categories}}
+                    <li class="dropdown right-buttons-frontpage">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                           role="button" aria-expanded="false">
+                            {{ this.name }}
+                            <span class="caret"></span></a>
+                        <ul class="dropdown-menu buttonsDropdown" role="menu">
+                            {{#each articlesFull}}
+                                <li><a href="/article/details/{{_id}}">{{title}}</a></li>
+                            {{/each}}
+                        </ul>
+                    </li>
+                {{/each}}
+                <li><a href="/home/staticPages/remunerations/">Remunerations</a></li>
+                <li><a href="/comment/all/">Legal blog</a></li>
+                <li><a href="/home/staticPages/contactMe/">Contact me</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div>
+    <div class="container pictureFrontPage">
+        <img src="images/picture.jpg" alt="">
+    </div>
+</div>
+
+<div>
+    <div class="container body-content">
+        <div class="row">
+            <div class="col-md-6 cell-frontpage">
+                <article>
+                    <header>
+                        <h3>Legal Counseling</h3>
+                    </header>
+                    <p align="justify">
+                        I provide legal counseling to the clients: at the law office or out of it, consultation
+                        with
+                        research or by telephone.
+                    </p>
+                    <footer>
+                        <div class="pull-right">
+                            <a class="btn btn-default btn-xs" href="/home/staticPages/legalCounseling/">Read
+                                more &raquo;</a>
+                        </div>
+                    </footer>
+                </article>
+            </div>
+
+            <div class="col-md-6 cell-frontpage">
+                <article>
+                    <header>
+                        <h3>Legal advices</h3>
+                    </header>
+                    <p align="justify">
+                        You have the opportunity to obtain legal advice on a meeting in the law office or out of
+                        it. Do
+                        not hesitate to get legal advice concerning your problems by an expert with the right
+                        experience.
+                    </p>
+                    <footer>
+                        <div class="pull-right">
+                            <a class="btn btn-default btn-xs" href="/home/staticPages/legalAdvices/">Read more &raquo;</a>
+                        </div>
+                    </footer>
+                </article>
+            </div>
+
+            <div class="col-md-6 cell-frontpage">
+                <article>
+                    <header>
+                        <h3>Law suits</h3>
+                    </header>
+                    <p align="justify">
+                        In my capacity as a lawyer, I deal with cases from different legal sectors. I work in
+                        corporate
+                        and commercial law, real estate and construction law, intellectual property, tax law,
+                        banking
+                        and finance, civil law and litigation.
+                    </p>
+                    <footer>
+                        <div class="pull-right">
+                            <a class="btn btn-default btn-xs" href="/home/staticPages/lawSuits/">Read more &raquo;</a>
+                        </div>
+                    </footer>
+                </article>
+            </div>
+
+            <div class="col-md-6 cell-frontpage">
+                <article>
+                    <header>
+                        <h3>Your rights</h3>
+                    </header>
+                    <p align="justify">
+                        In the event of any personal problems do not hesitate to seek the legal aspect of your
+                        rights. I
+                        provide legal consultations, through which you can find out what are the outputs of your
+                        problems.
+                    </p>
+                    <footer>
+                        <div class="pull-right">
+                            <a class="btn btn-default btn-xs" href="/home/staticPages/legalAdvices/">Read more &raquo;</a>
+                        </div>
+                    </footer>
+                </article>
+            </div>
+        </div>
+    </div>
+</div>
+
+

@@ -1,0 +1,229 @@
+.navbar-nav > li > a {
+    padding: 15px;
+    color: black;
+    /* right-buttons-frontpage: Home, About me, etc. */
+}
+
+.navbar {
+    min-height: 30px;
+}
+
+.navbar-frontpage {
+    background-color: gray;
+}
+
+.pictureFrontPage img {
+    width: 100%;
+}
+
+.buttonsRegAndLogin > li > a {
+    font-size: 14px;
+    /* buttons Register and LogIn */
+}
+
+.navbar-default .navbar-nav.navbar-right.buttonsRegAndLogin > li > a:hover {
+    color: lightgray;
+    /* buttons Register and LogIn */
+}
+
+.navbar-right-allButtons {
+    font-size: 14px;
+    /* buttons Admin, Welcome and LogOut */
+}
+
+.navbar-default .navbar-nav.navbar-right.navbar-right-allButtons > li > a:hover {
+    color: lightgray;
+    /* buttons Admin, Welcome and LogOut */
+}
+
+.navbar-default .navbar-nav.navbar-right.navbar-right-allButtons > .open > a:hover,
+.navbar-default .navbar-nav.navbar-right.navbar-right-allButtons > .open > a:focus {
+    background: none;
+    /* buttons Admin, Welcome and LogOut */
+}
+
+.buttonsDropdown {
+    font-size: 14px;
+    /* buttons Users, Categories and New Article */
+}
+
+.dropdown-menu.buttonsDropdown > li > a:hover {
+    background-color: gray;
+    color: white;
+    /* buttons Users, Categories and New Article */
+}
+
+.navbar-brand.navbar-left-button-frontpage {
+    font-family: 'Aref Ruqaa', sans-serif;
+    color: white;
+    font-size: 16px;
+    padding-bottom: 10px;
+    padding-top: 5px;
+    height: 50px;
+    /* button Nora Dimitrova Attorney-at-law */
+}
+
+.navbar-default .navbar-brand.navbar-left-button-frontpage:hover,
+.navbar-default .navbar-brand.navbar-left-button-frontpage:visited {
+    color: white;
+    /* button Nora Dimitrova Attorney-at-law */
+}
+
+.navbar-right-buttons-frontpage li a:hover {
+    color: red;
+    background: none;
+    /* right-buttons-frontpage: Home, About me, etc. */
+}
+
+.navbar-right-buttons-frontpage a {
+    color: black;
+    /* right-buttons-frontpage: Home, About me, etc. */
+}
+
+.nav.navbar-right-buttons-frontpage > .open > a:hover,
+.nav.navbar-right-buttons-frontpage > .open > a:focus {
+    background: none;
+    /* right-buttons-frontpage: Home, About me, etc. */
+}
+
+.cell-frontpage h3 {
+    font-size: 20px;
+}
+
+.cell-frontpage p {
+    font-size: 16px;
+}
+
+.full-width {
+    width: 100%;
+}
+
+ body {
+    overflow-y: scroll;
+}
+
+.btn.buttonsEditAndDelCatsAndUsers {
+    padding: 5px 5px;
+    font-size: 14px;
+}
+
+.pageComments h4 {
+    padding-left: 20px;
+    font-size: 22px;
+    text-align: center;
+    /* text Legal blog */
+}
+
+.welcomeText {
+    padding-left: 20px;
+    font-size: 16px;
+}
+
+.comment-post {
+    margin-left: 20px;
+}
+
+.bodyOfComment .subjectOfComment {
+    font-size: 18px;
+}
+
+.bodyOfComment .contentOfComment {
+    font-size: 16px;
+}
+
+.panel-footer .authorOfComment {
+    font-size: 12px;
+    float: left;
+}
+
+.panel-footer .dateOfComment {
+    font-size: 12px;
+    float: right;
+}
+
+.clear-floats {
+    clear: both;
+}
+
+.buttonDeleteComment button {
+    float: right;
+}
+
+.buttonEditReply button {
+    float: right;
+}
+
+.comment_form {
+    border: 3px solid #0d1318;
+    background: #0d1318;
+    margin-left: 10px;
+    width: 350px;
+    border-radius: 7px;
+    padding: 15px;
+}
+
+.comment_form b {
+    color: white;
+}
+
+.subjectArea {
+    max-width: none;
+    width: 315px;
+}
+
+.commentContentArea {
+    max-width: none;
+    width: 315px;
+}
+
+.reply-post {
+    font-size: 16px;
+    margin-left: 50px;
+}
+
+.reply .replyAreaEdit {
+    border: none;
+    background-color: transparent;
+    resize: none;
+    outline: none;
+    min-width: 100%;
+}
+
+.authorOfReply {
+    font-size: 12px;
+    float: left;
+}
+
+.dateOfReply {
+    font-size: 12px;
+    float: right;
+}
+
+.float-reply-post .replyPost {
+    background: lightskyblue;
+}
+
+.reply-form {
+    border: 3px solid darkgrey;
+    background: lightgray;
+    margin-left: 34px;
+    margin-right: 20px;
+    width: 350px;
+    border-radius: 7px;
+    padding: 15px;
+}
+
+.replyArea {
+    max-width: none;
+    width: 315px;
+}
+
+.buttonOfSearchBar {
+    height: 30px;
+    /* Search bar button */
+}
+
+.areaSearch {
+    height: 30px;
+    /* Search bar area */
+}
