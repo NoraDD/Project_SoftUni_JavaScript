@@ -5,50 +5,51 @@ const Category = mongoose.model('Category');
 
 module.exports = {
     index: (req, res) => {
-        module.exports.fetchCategories().then(function (allCats) {
+        /* allCats return as a result object that contains property category that contains array of cats and array of art*/
+        module.exports.fetchCategoriesWithArticles().then(function (allCats) {
             res.render('home/index', allCats);
         });
     },
 
     legalCounselingGet: (req, res) => {
-        module.exports.fetchCategories().then(function (allCats) {
+        module.exports.fetchCategoriesWithArticles().then(function (allCats) {
             res.render('home/staticPages/legalCounseling', allCats);
         });
     },
 
     legalAdvicesGet: (req, res) => {
-        module.exports.fetchCategories().then(function (allCats) {
-        res.render('home/staticPages/legalAdvices', allCats);
+        module.exports.fetchCategoriesWithArticles().then(function (allCats) {
+            res.render('home/staticPages/legalAdvices', allCats);
         });
     },
 
     lawSuitsGet: (req, res) => {
-        module.exports.fetchCategories().then(function (allCats) {
-        res.render('home/staticPages/lawSuits', allCats);
+        module.exports.fetchCategoriesWithArticles().then(function (allCats) {
+            res.render('home/staticPages/lawSuits', allCats);
         });
     },
 
     yourRightsGet: (req, res) => {
-        module.exports.fetchCategories().then(function (allCats) {
-        res.render('home/staticPages/yourRights', allCats);
+        module.exports.fetchCategoriesWithArticles().then(function (allCats) {
+            res.render('home/staticPages/yourRights', allCats);
         });
     },
 
     aboutMeGet: (req, res) => {
-        module.exports.fetchCategories().then(function (allCats) {
-        res.render('home/staticPages/aboutMe', allCats);
+        module.exports.fetchCategoriesWithArticles().then(function (allCats) {
+            res.render('home/staticPages/aboutMe', allCats);
         });
     },
 
     remunerationGet: (req, res) => {
-        module.exports.fetchCategories().then(function (allCats) {
-        res.render('home/staticPages/remunerations', allCats);
+        module.exports.fetchCategoriesWithArticles().then(function (allCats) {
+            res.render('home/staticPages/remunerations', allCats);
         });
     },
 
     contactMeGet: (req, res) => {
-        module.exports.fetchCategories().then(function (allCats) {
-        res.render('home/staticPages/contactMe', allCats);
+        module.exports.fetchCategoriesWithArticles().then(function (allCats) {
+            res.render('home/staticPages/contactMe', allCats);
         });
     },
 
@@ -61,55 +62,18 @@ module.exports = {
                 if (err) {
                     console.log(err.message);
                 }
-                    res.render('home/article', {articles: category.articles})
-            });
-        });
-    },
-
-    findArticles: (id) => {
-        return Category.findById(id).populate('articles').then(category => {
-            return User.populate(category.articles, {path: 'author'}, (err) => {
-                if (err) {
-                    console.log(err.message);
-                }
-                    return category.articles;
+                res.render('home/article', {articles: category.articles})
             });
         });
     },
 
     /*
      return all cats with articles; Promise won't work without return;
+     return array of categories and arrays of articles.
      */
-    fetchCategories: () => {
-        return Category.find({}).then(categories => {
-            let articles = [];
-            /*
-             convert Catetogy from object to string, so I can get its properties below.
-             */
-            let allCats = JSON.stringify(categories);
-            /*
-             parse Catetogy from string to object to string.
-             */
-            allCats = JSON.parse(allCats);
-            /*
-             return all articles to a category.
-             */
-            for (let i = 0; i < allCats.length; i++) {
-                articles.push(module.exports.findArticles(allCats[i]._id));
-            }
-            /*
-            promise to fetch all articles to category and then move on.
-             */
-            return Promise.all(articles).then(function (result) {
-                for (let i = 0; i < allCats.length; i++) {
-                    /*
-                    the result of articles for each category -> stringify and parse.
-                     */
-                    allCats[i].articlesFull = JSON.stringify(result[i]);
-                    allCats[i].articlesFull = JSON.parse(allCats[i].articlesFull);
-                }
-                return {categories: allCats};
-            });
-        })
+    fetchCategoriesWithArticles: () => {
+        return Category.find({}).populate('articles').then(categories => {
+            return {categories: categories};
+        });
     }
 };

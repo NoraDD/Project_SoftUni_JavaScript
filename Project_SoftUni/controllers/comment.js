@@ -4,8 +4,8 @@ const homeController = require('./../controllers/home');
 
 module.exports = {
     allGet: (req, res) => {
-        homeController.fetchCategories().then(function (allCats) {
-            Comment.find({}).then(comments => {
+        homeController.fetchCategoriesWithArticles().then(function (allCats) {
+            Comment.find({}).populate('author').then(comments => {
                 res.render('comment/all', {categories: allCats.categories, comments: comments});
             })
         });

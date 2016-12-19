@@ -49,7 +49,7 @@ module.exports = {
 
     details: (req, res) => {
         let id = req.params.id;
-        homeController.fetchCategories().then(function (allCats) {
+        homeController.fetchCategoriesWithArticles().then(function (allCats) {
             Article.findById(id).populate('author').then(article => {
                 if (!req.user) {
                     res.render('article/details', {
