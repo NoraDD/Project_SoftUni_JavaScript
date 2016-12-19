@@ -69,7 +69,8 @@
     /* button Nora Dimitrova Attorney-at-law */
 }
 
-.navbar-right-buttons-frontpage li a:hover {
+.navbar-right-buttons-frontpage li a:hover,
+.navbar-right-buttons-frontpage li a:focus {
     color: red;
     background: none;
     /* right-buttons-frontpage: Home, About me, etc. */

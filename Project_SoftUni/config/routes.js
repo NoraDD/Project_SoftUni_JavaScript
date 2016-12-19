@@ -39,7 +39,6 @@ module.exports = (app) => {
     app.get('/comment/all', commentController.allGet);
     app.post('/comment/all', commentController.createPost);
 
-    app.get('/comment/edit/:id', commentController.editGet);
     app.post('/comment/edit/:id', commentController.editPost);
 
     app.get('/comment/delete/:id', commentController.deleteGet);

@@ -77,16 +77,34 @@ module.exports = {
         });
     },
 
+    /*
+     return all cats with articles; Promise won't work without return;
+     */
     fetchCategories: () => {
         return Category.find({}).then(categories => {
             let articles = [];
+            /*
+             convert Catetogy from object to string, so I can get its properties below.
+             */
             let allCats = JSON.stringify(categories);
+            /*
+             parse Catetogy from string to object to string.
+             */
             allCats = JSON.parse(allCats);
+            /*
+             return all articles to a category.
+             */
             for (let i = 0; i < allCats.length; i++) {
                 articles.push(module.exports.findArticles(allCats[i]._id));
             }
+            /*
+            promise to fetch all articles to category and then move on.
+             */
             return Promise.all(articles).then(function (result) {
                 for (let i = 0; i < allCats.length; i++) {
+                    /*
+                    the result of articles for each category -> stringify and parse.
+                     */
                     allCats[i].articlesFull = JSON.stringify(result[i]);
                     allCats[i].articlesFull = JSON.parse(allCats[i].articlesFull);
                 }

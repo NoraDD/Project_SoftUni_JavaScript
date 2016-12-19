@@ -5,7 +5,7 @@ const homeController = require('./../controllers/home');
 module.exports = {
     allGet: (req, res) => {
         homeController.fetchCategories().then(function (allCats) {
-            Comment.find({}).populate('author').then(comments => {
+            Comment.find({}).then(comments => {
                 res.render('comment/all', {categories: allCats.categories, comments: comments});
             })
         });
@@ -43,30 +43,6 @@ module.exports = {
         });
     },
 
-    editGet: (req, res) => {
-        let id = req.params.id;
-
-        if (!req.isAuthenticated()) {
-            let returnUrl = `/comment/edit/${id}`;
-            req.session.returnUrl = returnUrl;
-
-            res.redirect('/user/login');
-            return;
-        }
-
-        Comment.findById(id).then(reply => {
-            comment.reply = reply;
-            req.user.isInRole('Admin').then(isAdmin => {
-                if (!isAdmin) {
-                    res.redirect('/');
-                    return;
-                }
-                res.render('comment/edit', comment)
-            });
-
-        });
-    },
-
     editPost: (req, res) => {
         let id = req.params.id;
 
@@ -80,19 +56,9 @@ module.exports = {
 
         let commentArgs = req.body;
 
-        let errorMsg = '';
-        if (!commentArgs.reply) {
-            errorMsg = 'Cannot reply!';
-
-            Comment.findById(id).then(reply => {
-                res.render('comment/edit', {reply: reply, error: errorMsg});
-            });
-        }
-        else {
-            Comment.findOneAndUpdate({_id: id}, {reply: commentArgs.reply, dateReply: Date.now()}).then(reply => {
-                res.redirect('/comment/all');
-            })
-        }
+        Comment.findOneAndUpdate({_id: id}, {reply: commentArgs.reply, dateReply: Date.now()}).then(reply => {
+            res.redirect('/comment/all');
+        })
     },
 
     deleteGet: (req, res) => {
@@ -121,7 +87,7 @@ module.exports = {
         let id = req.params.id;
 
         if (!req.isAuthenticated()) {
-            let returnUrl = `/article/delete/${id}`;
+            let returnUrl = `/comment/delete/${id}`;
             req.session.returnUrl = returnUrl;
 
             res.redirect('/user/login');
