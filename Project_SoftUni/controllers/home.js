@@ -5,7 +5,7 @@ const Category = mongoose.model('Category');
 
 module.exports = {
     index: (req, res) => {
-        /* allCats return as a result object with property category that contains array of cats and array of art*/
+        /* allCats return as a result object that contains array of cats and array of art*/
         module.exports.fetchCategoriesWithArticles().then(function (allCats) {
             res.render('home/index', allCats);
         });

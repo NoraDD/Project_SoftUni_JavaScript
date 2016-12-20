@@ -6,9 +6,7 @@ module.exports = {
     allGet: (req, res) => {
         homeController.fetchCategoriesWithArticles().then(function (allCats) {
             Comment.find({}).populate('author').then(comments => {
-                /*
-                Pass the cats arr with articles arr and the comments to the view.
-                 */
+                //Pass the cats arr with articles arr and the comments to the view.
                 res.render('comment/all', {categories: allCats.categories, comments: comments});
             })
         });
