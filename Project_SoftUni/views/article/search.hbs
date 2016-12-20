@@ -1,22 +1,22 @@
 <div class="container body-content">
     {{message}}
     {{#each articles}}
-    <div class="row">
-        <div class="col-md-12">
-            <article>
-                <header>
-                    <h2>{{this.title}}</h2>
-                </header>
-
-                <p>
-                    {{this.content}}
-                </p>
-
-                <small class="author">
-                    {{this.author.fullName}}
-                </small>
-            </article>
+        <div class="row">
+            <div class="col-md-12">
+                <article>
+                    <header>
+                        <h2>{{this.title}}</h2>
+                    </header>
+                    <p>
+                        {{this.content}}
+                    </p>
+                </article>
+            </div>
         </div>
-    </div>
     {{/each}}
+    <footer>
+        <div class="pull-right">
+            <a class="btn btn-default btn-xs" href="/">Back &raquo;</a>
+        </div>
+    </footer>
 </div>

@@ -41,7 +41,6 @@ module.exports = (app) => {
 
     app.post('/comment/edit/:id', commentController.editPost);
 
-    app.get('/comment/delete/:id', commentController.deleteGet);
     app.post('/comment/delete/:id', commentController.deletePost);
 
     app.post('/article/search', searchController.searchArtPost);

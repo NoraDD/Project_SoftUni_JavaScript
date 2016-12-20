@@ -66,8 +66,7 @@
                 {{#if ../isAdmin}}
                     <form class="form-horizontal" method="POST" action="/comment/edit/{{id}}">
                         <div class="buttonEditReply">
-                            <button type="submit" class="btn btn-success btn-xs" href="/comment/edit/{{id}}">
-                                Edit &raquo;</button>
+                            <button type="submit" class="btn btn-success btn-xs">Edit &raquo;</button>
                             <div class="clear-floats"></div>
                         </div>
                         <div class="reply-post">
@@ -114,8 +113,7 @@
                           placeholder="Enter your reply here" required></textarea>
                                 </div>
                                 <div>
-                                    <input type="submit" href="/comment/edit/{{id}}" name="submit"
-                                           value="Post Reply">
+                                    <input type="submit" name="submit" value="Post Reply">
                                 </div>
                             </div>
                         </form>

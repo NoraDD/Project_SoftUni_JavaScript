@@ -4,13 +4,6 @@ const homeController = require('./../controllers/home');
 
 module.exports = {
     createGet: (req, res) => {
-        if (!req.isAuthenticated()) {
-            let returnUrl = '/article/create';
-            req.session.returnUrl = returnUrl;
-
-            res.redirect('/user/login');
-            return;
-        }
 
         Category.find({}).then(categories => {
             res.render('article/create', {categories: categories});
@@ -18,13 +11,6 @@ module.exports = {
     },
 
     createPost: (req, res) => {
-        if (!req.isAuthenticated()) {
-            let returnUrl = '/article/create';
-            req.session.returnUrl = returnUrl;
-
-            res.redirect('/user/login');
-            return;
-        }
 
         let articleArgs = req.body;
 
@@ -74,15 +60,8 @@ module.exports = {
     },
 
     editGet: (req, res) => {
+        /* get the id, so we can get the specific article from the base */
         let id = req.params.id;
-
-        if (!req.isAuthenticated()) {
-            let returnUrl = `/article/edit/${id}`;
-            req.session.returnUrl = returnUrl;
-
-            res.redirect('/user/login');
-            return;
-        }
 
         Article.findById(id).then(article => {
             req.user.isInRole('Admin').then(isAdmin => {
@@ -101,14 +80,6 @@ module.exports = {
 
     editPost: (req, res) => {
         let id = req.params.id;
-
-        if (!req.isAuthenticated()) {
-            let returnUrl = `/article/edit/${id}`;
-            req.session.returnUrl = returnUrl;
-
-            res.redirect('/user/login');
-            return;
-        }
 
         let articleArgs = req.body;
 
@@ -153,14 +124,6 @@ module.exports = {
     deleteGet: (req, res) => {
         let id = req.params.id;
 
-        if (!req.isAuthenticated()) {
-            let returnUrl = `/article/delete/${id}`;
-            req.session.returnUrl = returnUrl;
-
-            res.redirect('/user/login');
-            return;
-        }
-
         Article.findById(id).populate('category').then(article => {
             req.user.isInRole('Admin').then(isAdmin => {
                 if (!isAdmin && !req.user.isAuthor(article)) {
@@ -175,14 +138,6 @@ module.exports = {
 
     deletePost: (req, res) => {
         let id = req.params.id;
-
-        if (!req.isAuthenticated()) {
-            let returnUrl = `/article/delete/${id}`;
-            req.session.returnUrl = returnUrl;
-
-            res.redirect('/user/login');
-            return;
-        }
 
         Article.findById(id).then(article => {
             req.user.isInRole('Admin').then(isAdmin => {

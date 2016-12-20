@@ -6,6 +6,9 @@ module.exports = {
     allGet: (req, res) => {
         homeController.fetchCategoriesWithArticles().then(function (allCats) {
             Comment.find({}).populate('author').then(comments => {
+                /*
+                Pass the cats arr with articles arr and the comments to the view.
+                 */
                 res.render('comment/all', {categories: allCats.categories, comments: comments});
             })
         });
@@ -44,16 +47,9 @@ module.exports = {
     },
 
     editPost: (req, res) => {
+        // get the id from form action url.
         let id = req.params.id;
-
-        if (!req.isAuthenticated()) {
-            let returnUrl = `/comment/edit/${id}`;
-            req.session.returnUrl = returnUrl;
-
-            res.redirect('/user/login');
-            return;
-        }
-
+        // get args from form input fields.
         let commentArgs = req.body;
 
         Comment.findOneAndUpdate({_id: id}, {reply: commentArgs.reply, dateReply: Date.now()}).then(reply => {
@@ -61,51 +57,12 @@ module.exports = {
         })
     },
 
-    deleteGet: (req, res) => {
-        let id = req.params.id;
-
-        if (!req.isAuthenticated()) {
-            let returnUrl = `/comment/delete/${id}`;
-            req.session.returnUrl = returnUrl;
-
-            res.redirect('/user/login');
-            return;
-        }
-
-        Comment.findById(id).populate('reply').then(comment => {
-            req.user.isInRole('Admin').then(isAdmin => {
-                if (!isAdmin) {
-                    res.redirect('/');
-                    return;
-                }
-                res.render('comment/delete', comment);
-            });
-        });
-    },
-
     deletePost: (req, res) => {
         let id = req.params.id;
 
-        if (!req.isAuthenticated()) {
-            let returnUrl = `/comment/delete/${id}`;
-            req.session.returnUrl = returnUrl;
-
-            res.redirect('/user/login');
-            return;
-        }
-
-        Comment.findById(id).then(comment => {
-            req.user.isInRole('Admin').then(isAdmin => {
-                if (!isAdmin) {
-                    res.redirect('/');
-                    return;
-                }
-
-                Comment.findOneAndRemove({_id: id}).then(comment => {
-                    comment.prepareDelete();
-                    res.redirect('/comment/all');
-                });
-            });
+        Comment.findOneAndRemove({_id: id}).then(comment => {
+            comment.prepareDelete();
+            res.redirect('/comment/all');
         });
     }
 };
